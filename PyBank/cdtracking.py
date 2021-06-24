@@ -20,10 +20,13 @@ with open(csvpath, 'r') as csvfile:
    print(Prof_loss)
       #find the Total Months
    print(len(dates))
-   Net_total= sum(Prof_loss)
+   Net_total= round(sum(Prof_loss),2)
    print("$", sum(Prof_loss))
 
       #Find the Average Change
+      #change is b-a, need a list to average
+       # newchange=sum(Prof_loss(x) - Prof_loss(x-1))
+
    changes=[]
    for x in range(1,len(dates)):
       change = Prof_loss[x]-Prof_loss[x-1]
@@ -31,20 +34,28 @@ with open(csvpath, 'r') as csvfile:
 
    avg_change=round(sum(changes)/len(changes),2)
    print(avg_change)
-            #change is b-a, need a list to average
-       # newchange=sum(Prof_loss(x) - Prof_loss(x-1))
 
 # The greatest increase in profits (date and amount) over the entire period
 # Need to find the date connected to make Change.
 # We need to find the index. 
-   maxchange=max(changes)
+   maxchange= round(max(changes),2)
    print(maxchange)
-   datemax = dates[changes.index(maxchange)]
-   # print(datemax)
-   # minchange=min(changes)
-   # print(minchange)
+   datemax =dates[changes.index(maxchange)]
+   print(datemax)
+   minchange= round(min(changes),2)
+   print(minchange)
+   datemin =dates[changes.index(minchange)]
+   print(datemin)
 
-
+   print("--------------------------------")
+   print("Financial Analysis")
+   print("--------------------------------")
+   print("Total Months: "+ str(len(dates)))
+   print("Total: $ "+ str(Net_total))
+   print("Average Change: "+ "$ "+ str(avg_change))
+   print("Greatest Increase in Profits: " + str(datemax) + "  " + "$" + str(maxchange) )
+   print("Greatest Decrease in Profits: " + str(datemin) + "  " + "$"+ str(minchange) )
+   
 #
 
    
